@@ -9,4 +9,5 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+  get '/profile', to: 'profiles#show'
 end
