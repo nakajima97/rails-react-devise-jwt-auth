@@ -7,6 +7,7 @@ import client from '../lib/client'
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   // eslint-disable-next-line
   const [cookies, setCookie, removeCookie] = useCookies(["jwt"]);
@@ -25,8 +26,12 @@ const Login = () => {
 
     client.post('http://localhost:3000/user/login', params)
       .then((res) => {
-        setCookie("jwt", res.headers["authorization"]);
-        history.push('/profile');
+        if (res.headers["authorization"] === undefined) {
+          setMessage("ログイン失敗")
+        } else {
+          setCookie("jwt", res.headers["authorization"]);
+          history.push('/profile');
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -47,6 +52,7 @@ const Login = () => {
         </div>
         <input type="submit" />
       </form>
+      { message && <p>{message}</p>}
     </div>
   )
 }

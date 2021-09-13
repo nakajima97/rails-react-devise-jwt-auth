@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useCookies } from 'react-cookie'
+import Logout from './Logout';
 
 const Profile = () => {
   // eslint-disable-next-line
@@ -27,6 +28,7 @@ const Profile = () => {
     <>
       <p>プロフィールページ</p>
       {email ? <p>メールアドレス: {email}</p> : <p>ログインしてください</p>}
+      <Logout />
     </>
   )
 }
