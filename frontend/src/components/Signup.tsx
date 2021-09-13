@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
-import axios from 'axios'
 import { useCookies } from 'react-cookie'
 
 import client from '../lib/client'
@@ -27,7 +26,6 @@ const Signup = () => {
 
     client.post('http://localhost:3000/user', params)
       .then((res) => {
-        console.log(res)
         setCookie("jwt", res.headers["authorization"]);
         history.push('/profile');
       })

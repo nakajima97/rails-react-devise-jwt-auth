@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   def show
     if user_signed_in?
       render json: {
-        name: current_user.email
+        email: current_user.email
       }
     else
       render json: {
